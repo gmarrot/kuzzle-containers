@@ -6,6 +6,7 @@ RUN  set -x \
        python \
        make \
        g++ \
+       git \
        libzmq3-dev
 
 WORKDIR /var/app
