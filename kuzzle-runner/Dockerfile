@@ -7,6 +7,7 @@ RUN  set -x \
        make \
        g++ \
        git \
-       libzmq3-dev
+       libzmq3-dev \
+       libunwind-dev
 
 WORKDIR /var/app

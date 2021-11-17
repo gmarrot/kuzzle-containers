@@ -23,6 +23,7 @@ RUN set -x \
     procps \
     python \
     xz-utils \
+    libunwind-dev \
   \
   \
   && ARCH= && dpkgArch="$(dpkg --print-architecture)" \

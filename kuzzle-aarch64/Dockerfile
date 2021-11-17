@@ -21,6 +21,7 @@ RUN set -x \
     git \
     python \
     xz-utils \
+    libunwind-dev \
   \
   \
   && ARCH= && dpkgArch="$(dpkg --print-architecture)" \
@@ -36,7 +37,7 @@ RUN set -x \
   && curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
   && tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
   && rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
-  && ln -s /usr/local/bin/node /usr/local/bin/nodejs
+  && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   \
   \
   && git clone -b ${current_tag} --recursive https://github.com/kuzzleio/kuzzle.git . \
@@ -44,7 +45,7 @@ RUN set -x \
   && for plugin in plugins/enabled/*/; do \
       cd $plugin; \
       npm ci --unsafe-perm; \
-     done
+     done \
   \
   && apt-get remove \
     build-essentials \
