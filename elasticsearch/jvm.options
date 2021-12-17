@@ -1,6 +1,31 @@
 ## JVM configuration
 
 ################################################################
+## IMPORTANT: JVM heap size
+################################################################
+##
+## You should always set the min and max JVM heap
+## size to the same value. For example, to set
+## the heap to 4 GB, set:
+##
+## -Xms4g
+## -Xmx4g
+##
+## See https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html
+## for more information
+##
+################################################################
+
+# Xms represents the initial size of total heap space
+# Xmx represents the maximum size of total heap space
+
+# Commented out since these are supplied as env vars in the command-line
+# for the service.
+
+#-Xms2g
+#-Xmx2g
+
+################################################################
 ## Expert settings
 ################################################################
 ##
@@ -43,10 +68,9 @@
 # use old-style file permissions on JDK9
 -Djdk.io.permissionsUseCanonicalPath=true
 
-# flags to configure Netty
+# flags to keep Netty from being unsafe
 -Dio.netty.noUnsafe=true
 -Dio.netty.noKeySetOptimization=true
--Dio.netty.recycler.maxCapacityPerThread=0
 
 # log4j 2
 -Dlog4j.shutdownHookEnabled=false
@@ -75,13 +99,6 @@
 # log GC status to a file with time stamps
 # ensure the directory exists
 #-Xloggc:${loggc}
-
-# By default, the GC log file will not rotate.
-# By uncommenting the lines below, the GC log file
-# will be rotated every 128MB at most 32 times.
-#-XX:+UseGCLogFileRotation
-#-XX:NumberOfGCLogFiles=32
-#-XX:GCLogFileSize=128M
 
 # Elasticsearch 5.0.0 will throw an exception on unquoted field names in JSON.
 # If documents were already indexed with unquoted fields in a previous version
