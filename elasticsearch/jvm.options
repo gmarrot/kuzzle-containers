@@ -90,3 +90,6 @@
 
 # JDK 9+ GC logging
 9-:-Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m
+
+# Log4Shell mitigation
+-Dlog4j2.formatMsgNoLookups=true
